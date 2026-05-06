@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhishCheck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <div class="intro">
+          <p class="eyebrow">Rule-based phishing scan</p>
+          <h1>PhishCheck</h1>
+          <p class="intro-copy">Paste an email, link, or suspicious message and get a quick risk readout.</p>
+        </div>
+
+        <form method="post" class="analyzer">
+          <label for="message">Email or URL</label>
+          <textarea id="message" name="message" rows="12" placeholder="Paste suspicious content here...">{{ sample }}</textarea>
+          <button type="submit">Analyze</button>
+        </form>
+
+        {% if result %}
+          <section class="result-panel" aria-live="polite">
+            <div class="score-row">
+              <div>
+                <p class="eyebrow">Risk score</p>
+                <h2>{{ result.score }}<span>/100</span></h2>
+              </div>
+              <span class="risk-pill {% if result.score >= 75 %}risk-high{% elif result.score >= 40 %}risk-medium{% elif result.score > 0 %}risk-low{% else %}risk-none{% endif %}">
+                {{ result.level }}
+              </span>
+            </div>
+
+            <div class="meter" aria-hidden="true">
+              <span style="width: {{ result.score }}%"></span>
+            </div>
+
+            <h3>Reasons</h3>
+            <ul class="reasons">
+              {% for reason in result.reasons %}
+                <li>{{ reason }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% else %}
+          <section class="result-panel muted-panel">
+            <p class="eyebrow">Ready</p>
+            <h2>0<span>/100</span></h2>
+            <p class="empty-state">Your phishing risk score and reasons will appear here after analysis.</p>
+          </section>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
