@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5000/api/analyze-url";
+const API_URL = "https://phishcheck-qnp6.onrender.com/api/analyze-url";
 
 const currentUrlEl = document.getElementById("currentUrl");
 const scoreValueEl = document.getElementById("scoreValue");
@@ -40,7 +40,7 @@ async function analyzeCurrentTab() {
     const result = await response.json();
     renderResult(result);
   } catch (error) {
-    showError("Could not reach the PhishCheck backend. Start Flask with python app.py, then refresh this popup.");
+    showError("Could not reach the PhishCheck backend. Wait a moment and refresh this popup.");
   }
 }
 
@@ -91,5 +91,5 @@ function showError(message) {
   statusPillEl.className = "status-pill dangerous";
   scoreValueEl.textContent = "--";
   scoreMeterEl.style.width = "0%";
-  renderReasons(["The extension needs the local Flask API running at 127.0.0.1:5000."]);
+  renderReasons(["The extension needs the deployed PhishCheck API to be reachable."]);
 }
