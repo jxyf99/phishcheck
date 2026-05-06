@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhishCheck</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header>
+        <div>
+          <p class="eyebrow">Current site</p>
+          <h1>PhishCheck</h1>
+        </div>
+        <span id="statusPill" class="status-pill loading">Checking</span>
+      </header>
+
+      <section class="score-card">
+        <div class="score-row">
+          <span id="scoreValue" class="score">--</span>
+          <span class="score-total">/100</span>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span id="scoreMeter"></span>
+        </div>
+      </section>
+
+      <section class="site-card">
+        <p class="label">URL</p>
+        <p id="currentUrl" class="url">Loading current tab...</p>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2>Reasons</h2>
+          <button id="refreshButton" type="button">Refresh</button>
+        </div>
+        <ul id="reasonsList" class="reasons">
+          <li>Waiting for analysis.</li>
+        </ul>
+      </section>
+
+      <p id="errorMessage" class="error" hidden></p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
