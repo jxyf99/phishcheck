@@ -250,3 +250,31 @@ h3 {
     min-height: 280px;
   }
 }
+
+.policy-page {
+  width: min(880px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.policy-content {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.policy-content h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+.policy-content h2 {
+  margin: 28px 0 8px;
+  font-size: 1.1rem;
+}
+
+.policy-content p {
+  color: #334155;
+  line-height: 1.6;
+}

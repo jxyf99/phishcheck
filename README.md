@@ -47,36 +47,31 @@ A simple Flask SaaS MVP that analyzes pasted emails or URLs with rule-based phis
 
 ## Chrome Extension
 
-The extension lives in `chrome-extension/` and checks the current browser tab against the local Flask API.
+The extension lives in `chrome-extension/` and checks the current browser tab against the deployed PhishCheck API.
 
-1. Start the Flask backend first:
-
-   ```powershell
-   .\.venv\Scripts\Activate.ps1
-   python app.py
-   ```
-
-2. Open Chrome and go to:
+1. Open Chrome and go to:
 
    ```text
    chrome://extensions
    ```
 
-3. Turn on **Developer mode** in the top-right corner.
+2. Turn on **Developer mode** in the top-right corner.
 
-4. Click **Load unpacked**.
+3. Click **Load unpacked**.
 
-5. Select this folder:
+4. Select this folder:
 
    ```text
    C:\phishcheck\chrome-extension
    ```
 
-6. Open any normal website, click the PhishCheck extension icon, and the popup will show:
+5. Open any normal website, click the PhishCheck extension icon, and the popup will show:
 
    - A risk score from 0-100
    - A Safe, Suspicious, or Dangerous label
    - The rule-based reasons returned by the backend
+
+The extension package and Chrome Web Store listing prep notes are in `CHROME_WEB_STORE.md`.
 
 ## Notes
 

@@ -18,6 +18,11 @@ def index():
     return render_template("index.html", result=result, sample=sample)
 
 
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+
 @app.route("/api/analyze-url", methods=["POST", "OPTIONS"])
 def analyze_url_api():
     if request.method == "OPTIONS":

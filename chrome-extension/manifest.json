@@ -1,15 +1,28 @@
 {
   "manifest_version": 3,
   "name": "PhishCheck URL Scanner",
-  "description": "Checks the current website URL against the PhishCheck phishing detection API.",
-  "version": "1.0.0",
+  "short_name": "PhishCheck",
+  "description": "Scans the current website URL and shows a rule-based phishing risk score.",
+  "version": "1.0.1",
+  "homepage_url": "https://phishcheck-qnp6.onrender.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "PhishCheck"
+    "default_title": "PhishCheck",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "permissions": [
-    "activeTab",
-    "tabs"
+    "activeTab"
   ],
   "host_permissions": [
     "https://phishcheck-qnp6.onrender.com/*"
