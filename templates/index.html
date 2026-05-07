@@ -4,53 +4,118 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PhishCheck</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
   </head>
   <body>
+    {% set risk_class = 'risk-none' %}
+    {% if result %}
+      {% if result.score >= 75 %}
+        {% set risk_class = 'risk-high' %}
+      {% elif result.score >= 40 %}
+        {% set risk_class = 'risk-medium' %}
+      {% elif result.score > 0 %}
+        {% set risk_class = 'risk-low' %}
+      {% endif %}
+    {% endif %}
+
     <main class="app-shell">
-      <section class="workspace">
-        <div class="intro">
-          <p class="eyebrow">Rule-based phishing scan</p>
-          <h1>PhishCheck</h1>
-          <p class="intro-copy">Paste an email, link, or suspicious message and get a quick risk readout.</p>
+      <section class="scanner-header">
+        <a class="brand" href="{{ url_for('index') }}">
+          <span class="brand-mark">PC</span>
+          <span>PhishCheck</span>
+        </a>
+        <div class="status-rail" aria-label="Scanner checks">
+          <span>URL</span>
+          <span>Domains</span>
+          <span>Urgency</span>
+          <span>Credentials</span>
+          <span>Attachments</span>
         </div>
+      </section>
 
-        <form method="post" class="analyzer">
-          <label for="message">Email or URL</label>
-          <textarea id="message" name="message" rows="12" placeholder="Paste suspicious content here...">{{ sample }}</textarea>
-          <button type="submit">Analyze</button>
-        </form>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Threat triage console</p>
+          <h1>Inspect suspicious messages before they bite.</h1>
+        </div>
+        <div class="hero-card">
+          <span class="pulse-dot"></span>
+          <strong>Rule engine online</strong>
+          <p>Fast scoring for links, password requests, urgency language, and risky attachments.</p>
+        </div>
+      </section>
 
-        {% if result %}
-          <section class="result-panel" aria-live="polite">
+      <section class="workspace">
+        <section class="scan-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Input</p>
+              <h2>Analyze content</h2>
+            </div>
+            <span class="scan-mode">Manual scan</span>
+          </div>
+          <form method="post" class="analyzer">
+            <label for="message">Email, URL, or message</label>
+            <textarea id="message" name="message" rows="12" placeholder="Paste suspicious content here...">{{ sample }}</textarea>
+            <button type="submit">Run analysis</button>
+          </form>
+        </section>
+
+        <aside class="result-panel {{ risk_class }}" aria-live="polite">
+          {% if result %}
             <div class="score-row">
               <div>
                 <p class="eyebrow">Risk score</p>
                 <h2>{{ result.score }}<span>/100</span></h2>
               </div>
-              <span class="risk-pill {% if result.score >= 75 %}risk-high{% elif result.score >= 40 %}risk-medium{% elif result.score > 0 %}risk-low{% else %}risk-none{% endif %}">
-                {{ result.level }}
-              </span>
+              <span class="risk-pill {{ risk_class }}">{{ result.level }}</span>
             </div>
 
             <div class="meter" aria-hidden="true">
               <span style="width: {{ result.score }}%"></span>
             </div>
 
-            <h3>Reasons</h3>
+            <div class="reasons-heading">
+              <h3>Signal report</h3>
+              <span>{{ result.reasons|length }} findings</span>
+            </div>
             <ul class="reasons">
               {% for reason in result.reasons %}
                 <li>{{ reason }}</li>
               {% endfor %}
             </ul>
-          </section>
-        {% else %}
-          <section class="result-panel muted-panel">
-            <p class="eyebrow">Ready</p>
-            <h2>0<span>/100</span></h2>
-            <p class="empty-state">Your phishing risk score and reasons will appear here after analysis.</p>
-          </section>
-        {% endif %}
+          {% else %}
+            <div class="score-row">
+              <div>
+                <p class="eyebrow">Ready</p>
+                <h2>0<span>/100</span></h2>
+              </div>
+              <span class="risk-pill risk-none">Standing by</span>
+            </div>
+            <div class="meter" aria-hidden="true">
+              <span style="width: 0%"></span>
+            </div>
+            <p class="empty-state">Risk score and signal report will appear after analysis.</p>
+          {% endif %}
+        </aside>
+      </section>
+
+      <section class="intel-grid" aria-label="Rule checks">
+        <article>
+          <span>01</span>
+          <strong>Link behavior</strong>
+          <p>Shorteners, insecure HTTP, IP-address URLs, and unusual link patterns.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Domain mismatch</strong>
+          <p>HTML links where the visible domain does not match the destination.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Credential pressure</strong>
+          <p>Password, code, account, and banking language combined with urgency.</p>
+        </article>
       </section>
     </main>
   </body>
