@@ -2,6 +2,12 @@
 
 Use this checklist and copy when preparing the PhishCheck URL Scanner listing.
 
+Published listing:
+
+```text
+https://chromewebstore.google.com/detail/phishcheck-url-scanner/ekmkfgemojeljggbamlglpgikjcenhcg
+```
+
 ## Package
 
 Zip the contents of `chrome-extension/`, not the parent project folder. The zip should contain `manifest.json`, `popup.html`, `popup.css`, `popup.js`, and the `icons/` folder at the top level.

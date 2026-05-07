@@ -49,6 +49,12 @@ A simple Flask SaaS MVP that analyzes pasted emails or URLs with rule-based phis
 
 The extension lives in `chrome-extension/` and checks the current browser tab against the deployed PhishCheck API.
 
+Install from the Chrome Web Store:
+
+```text
+https://chromewebstore.google.com/detail/phishcheck-url-scanner/ekmkfgemojeljggbamlglpgikjcenhcg
+```
+
 1. Open Chrome and go to:
 
    ```text
