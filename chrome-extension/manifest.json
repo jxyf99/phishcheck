@@ -3,7 +3,7 @@
   "name": "PhishCheck URL Scanner",
   "short_name": "PhishCheck",
   "description": "Scans the current website URL and shows a rule-based phishing risk score.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage_url": "https://phishcheck-qnp6.onrender.com",
   "icons": {
     "16": "icons/icon16.png",

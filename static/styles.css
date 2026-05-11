@@ -381,6 +381,71 @@ button:hover {
   padding: 12px;
 }
 
+.finding-meta,
+.evidence-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.finding-meta {
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.finding-meta span,
+.finding-meta strong {
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.finding-meta span {
+  color: var(--cyan);
+}
+
+.finding-meta strong {
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+.reasons li p {
+  margin-bottom: 0;
+}
+
+.evidence-list {
+  margin-top: 10px;
+}
+
+.evidence-list span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  background: #0a0f15;
+  color: var(--muted);
+  padding: 5px 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.severity-high {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.severity-medium {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.severity-low,
+.severity-info {
+  background: var(--cyan-soft);
+  color: var(--cyan);
+}
+
 .empty-state {
   margin: 0;
   line-height: 1.5;

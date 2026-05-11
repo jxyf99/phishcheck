@@ -36,8 +36,10 @@ def analyze_url_api():
     response = {
         "url": url,
         "score": score,
+        "level": result["level"],
         "status": site_status(score),
         "reasons": result["reasons"],
+        "findings": result["findings"],
     }
 
     return build_cors_response(response)

@@ -31,7 +31,7 @@ Description:
 ```text
 PhishCheck URL Scanner checks the website URL in your active Chrome tab and shows a phishing risk score from 0 to 100.
 
-The result includes a Safe, Suspicious, or Dangerous label plus short reasons from a rule-based backend. Current checks include suspicious URL wording, insecure HTTP links, shortened URLs, IP-address links, unusual subdomains, and other common phishing indicators.
+The result includes a Safe, Suspicious, or Dangerous label plus structured findings from a rule-based backend. Current checks include suspicious URL wording, insecure HTTP links, shortened URLs, IP-address links, unusual subdomains, punycode, suspicious top-level domains, and brand lookalike domains.
 
 This extension is intended for quick triage and learning. It does not guarantee that a website is safe.
 ```
@@ -92,6 +92,8 @@ https://phishcheck-qnp6.onrender.com/privacy
 1. Install the extension.
 2. Open a normal website tab, such as https://github.com.
 3. Click the PhishCheck extension icon.
-4. Confirm the popup displays the current URL, a 0-100 risk score, a Safe/Suspicious/Dangerous label, and reasons.
+4. Confirm the popup displays the current URL, a 0-100 risk score, a Safe/Suspicious/Dangerous label, and structured findings.
 5. Click Refresh to run the scan again.
+6. Click Demo to preview an offline scan.
+7. Click Copy to copy a plain-text scan report.
 ```

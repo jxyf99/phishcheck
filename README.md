@@ -8,6 +8,7 @@ A simple Flask SaaS MVP that analyzes pasted emails or URLs with rule-based phis
 - Suspicious or insecure links
 - Shortened URLs
 - Mismatched domains in HTML links
+- Punycode, suspicious TLDs, and brand lookalike domains
 - Requests for passwords, codes, or sensitive account data
 - Suspicious attachment file types
 
@@ -45,6 +46,12 @@ A simple Flask SaaS MVP that analyzes pasted emails or URLs with rule-based phis
    http://127.0.0.1:5000
    ```
 
+## Run Tests
+
+```powershell
+python -m unittest discover -s tests
+```
+
 ## Chrome Extension
 
 The extension lives in `chrome-extension/` and checks the current browser tab against the deployed PhishCheck API.
@@ -75,7 +82,8 @@ https://chromewebstore.google.com/detail/phishcheck-url-scanner/ekmkfgemojeljggb
 
    - A risk score from 0-100
    - A Safe, Suspicious, or Dangerous label
-   - The rule-based reasons returned by the backend
+   - Structured findings with severity, category, and evidence
+   - Demo and copy-report actions for quick review
 
 The extension package and Chrome Web Store listing prep notes are in `CHROME_WEB_STORE.md`.
 

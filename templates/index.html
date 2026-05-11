@@ -9,9 +9,9 @@
   <body>
     {% set risk_class = 'risk-none' %}
     {% if result %}
-      {% if result.score >= 75 %}
+      {% if result.score >= 70 %}
         {% set risk_class = 'risk-high' %}
-      {% elif result.score >= 40 %}
+      {% elif result.score >= 35 %}
         {% set risk_class = 'risk-medium' %}
       {% elif result.score > 0 %}
         {% set risk_class = 'risk-low' %}
@@ -77,11 +77,24 @@
 
             <div class="reasons-heading">
               <h3>Signal report</h3>
-              <span>{{ result.reasons|length }} findings</span>
+              <span>{{ result.findings|length }} findings</span>
             </div>
             <ul class="reasons">
-              {% for reason in result.reasons %}
-                <li>{{ reason }}</li>
+              {% for finding in result.findings %}
+                <li>
+                  <div class="finding-meta">
+                    <span>{{ finding.category }}</span>
+                    <strong class="severity-{{ finding.severity }}">{{ finding.severity }}</strong>
+                  </div>
+                  <p>{{ finding.message }}</p>
+                  {% if finding.evidence %}
+                    <div class="evidence-list" aria-label="Evidence">
+                      {% for item in finding.evidence %}
+                        <span>{{ item }}</span>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </li>
               {% endfor %}
             </ul>
           {% else %}
